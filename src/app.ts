@@ -4,6 +4,7 @@ import cors from "cors";
 import { Pool } from "pg";
 
 dotenv.config();
+console.log("ENVIRONMENT:", process.env.ENVIRONMENT);
 
 const app = express();
 app.use(cors());
@@ -32,10 +33,9 @@ const pool = new Pool({
  */
 app.get("/", (_req: Request, res: Response) => {
   res.json({
-    message: "Hello World from ECS backend 🚀",
+    message: `Hello World from ECS backend ${process.env.ENVIRONMENT} 🚀`,
   });
 });
-
 /**
  * ENDPOINT /healthcheck
  * Usado por ALB / ECS Health Check
